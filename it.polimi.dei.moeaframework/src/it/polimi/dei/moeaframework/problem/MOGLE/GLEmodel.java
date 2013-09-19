@@ -18,7 +18,7 @@ public class GLEmodel extends ExternalProblem {
 	private static final String EXECUTABLE = "./GLEmodel4moea";
 	private static final String PARAMFILE_NAME = "paramfile.yaml";
 	public static String LOGFILE_ID = "";
-	public static final String NAME = "GLEmodel"; // public to be read from GLEmodelProblemProvider
+	protected static final String NAME = "GLEmodel"; // public to be read from GLEmodelProblemProvider
 
 	// yaml file keys
 	private static final String OBJECTIVE_KEY = "objective";

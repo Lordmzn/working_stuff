@@ -7,11 +7,11 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.moeaframework.Executor;
-import org.moeaframework.analysis.sensitivity.Evaluator;
 import org.moeaframework.analysis.sensitivity.ResultEntry;
 import org.moeaframework.analysis.sensitivity.ResultFileWriter;
 import org.moeaframework.core.FrameworkException;
 import org.moeaframework.core.NondominatedPopulation;
+import org.moeaframework.core.spi.ProblemFactory;
 import org.moeaframework.util.CommandLineUtility;
 import org.moeaframework.util.Localization;
 
@@ -142,25 +142,27 @@ public class ExecutorUtility extends CommandLineUtility {
     for (Object obj : options.getOptions()) {
       Option option = (Option) obj;
 
-      option.setDescription(Localization.getString(Evaluator.class,
+      option.setDescription(Localization.getString(ExecutorUtility.class,
           "option." + option.getLongOpt()));
     }
 
     return options;
   }
-  
+
   // simplest experiment run
   @Override
   public void run(CommandLine commandLine) throws IOException {
     // running experiment
     NondominatedPopulation result = runExperiment(commandLine);
     // outputting
-    ResultFileWriter writer = new ResultFileWriter(null, out);
+    ResultFileWriter writer = new ResultFileWriter(ProblemFactory.getInstance()
+        .getProblem(commandLine.getOptionValue("problemName")), out);
     writer.append(new ResultEntry(result));
     writer.close();
   }
 
-  public NondominatedPopulation runExperiment(CommandLine commandLine) throws IOException {
+  public NondominatedPopulation runExperiment(CommandLine commandLine)
+      throws IOException {
     // setup the optimizer
     try {
       problem = (String) commandLine.getOptionValue("problemName");
@@ -175,9 +177,10 @@ public class ExecutorUtility extends CommandLineUtility {
           || algorithm.equalsIgnoreCase("MOEAD")
           || algorithm.equalsIgnoreCase("GDE3")
           || algorithm.equalsIgnoreCase("random")
-          //|| algorithm.equalsIgnoreCase("AMALGAM")
-          || algorithm.equalsIgnoreCase("OMOPSO"))) {
-        throw new FrameworkException("Algorithm not yet coded in the Executor Utility.");
+      // || algorithm.equalsIgnoreCase("AMALGAM")
+      || algorithm.equalsIgnoreCase("OMOPSO"))) {
+        throw new FrameworkException(
+            "Algorithm not yet coded in the Executor Utility.");
       }
     } catch (Exception e) {
       System.err.println(e.getMessage());
