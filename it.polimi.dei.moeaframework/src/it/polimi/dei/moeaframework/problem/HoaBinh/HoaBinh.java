@@ -23,6 +23,7 @@ public class HoaBinh extends ExternalProblem {
   private static final String SETTINGS_FILENAME = "settings.yaml";
   private static final String CALIBRATION_DATASET = "ts_HB_flow_prec_cal_1962_1969.txt";
   private static final String INITIAL_STORAGE = "9668050000";
+  private static final String POLICY_TYPE = "ann";
   private static final String NUMBER_OF_NEURONS = "4";
   private static final String NUMBER_OF_INPUTS = "3";
   protected static final String NAME = "HoaBinh";
@@ -37,7 +38,7 @@ public class HoaBinh extends ExternalProblem {
 
   @SuppressWarnings("unchecked")
   public HoaBinh() throws IOException, FileNotFoundException {
-    super(EXECUTABLE, CALIBRATION_DATASET, INITIAL_STORAGE, NUMBER_OF_NEURONS, NUMBER_OF_INPUTS);
+    super(EXECUTABLE, CALIBRATION_DATASET, INITIAL_STORAGE, POLICY_TYPE, NUMBER_OF_NEURONS, NUMBER_OF_INPUTS);
     // loading the same paramfile used by the model
     InputStream paramfile = new FileInputStream(new File(SETTINGS_FILENAME));
     Yaml yaml = new Yaml();

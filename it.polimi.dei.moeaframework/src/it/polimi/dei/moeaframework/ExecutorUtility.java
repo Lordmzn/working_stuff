@@ -155,10 +155,16 @@ public class ExecutorUtility extends CommandLineUtility {
     // running experiment
     NondominatedPopulation result = runExperiment(commandLine);
     // outputting
-    ResultFileWriter writer = new ResultFileWriter(ProblemFactory.getInstance()
-        .getProblem(commandLine.getOptionValue("problemName")), out);
-    writer.append(new ResultEntry(result));
-    writer.close();
+    if (result != null) {
+      ResultFileWriter writer = null;
+      try {
+        writer = new ResultFileWriter(ProblemFactory.getInstance().getProblem(
+            commandLine.getOptionValue("problemName")), out);
+        writer.append(new ResultEntry(result));
+      } finally {
+        writer.close();
+      }
+    }
   }
 
   public NondominatedPopulation runExperiment(CommandLine commandLine)
@@ -326,7 +332,9 @@ public class ExecutorUtility extends CommandLineUtility {
       new ExecutorUtility().start(args);
     } catch (Exception e) {
       e.printStackTrace();
+    } finally {
     }
+    return;
   }
 
 }
