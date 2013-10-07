@@ -190,13 +190,14 @@ public class ExecutorUtility extends CommandLineUtility {
       System.out.println("# Total NFE: " + nfe);
       System.out.println("# Seed: " + seed);
       System.out
-          .println("# NFE\tElapsed Time\tPopulation Size\tGenerational Distance\tAdditiveEpsilonIndicator");
+          .println("# NFE\tElapsed Time\tPopulationSize\tGenerationalDistance\tAdditiveEpsilonIndicator\tHypervolume");
       for (int j = 0; j < accumulator.size("NFE"); j++) {
         System.out.println(accumulator.get("NFE", j) + "\t"
             + accumulator.get("Elapsed Time", j) + "\t"
             + accumulator.get("Population Size", j) + "\t"
             + accumulator.get("GenerationalDistance", j) + "\t"
-            + accumulator.get("AdditiveEpsilonIndicator", j));
+            + accumulator.get("AdditiveEpsilonIndicator", j) + "\t"
+            + accumulator.get("Hypervolume", j));
       }
       System.out.println("#");
     }

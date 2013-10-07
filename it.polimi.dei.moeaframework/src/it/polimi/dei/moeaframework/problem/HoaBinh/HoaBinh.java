@@ -23,7 +23,7 @@ public class HoaBinh extends ExternalProblem {
   private static final String SETTINGS_FILENAME = "settings.yaml";
   private static final String CALIBRATION_DATASET = "ts_HB_flow_prec_cal_1962_1969.txt";
   private static final String INITIAL_STORAGE = "9668050000";
-  private static final String POLICY_TYPE = "rbf";
+  private static final String POLICY_TYPE = "ann";
   private static final String NUMBER_OF_NEURONS = "4";
   private static final String NUMBER_OF_INPUTS = "3";
   protected static final String NAME = "HoaBinh";
