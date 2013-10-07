@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.moeaframework.core.NondominatedPopulation;
 import org.moeaframework.core.Solution;
@@ -15,17 +14,9 @@ import org.moeaframework.core.variable.RealVariable;
 
 public class GLEExecutorUtility extends ExecutorUtility {
 	
-	@SuppressWarnings("static-access")
 	@Override
 	public Options getOptions() {
 		Options options = super.getOptions();
-		
-		options.addOption(OptionBuilder
-				.withLongOpt("seed")
-				.hasArg()
-				.withArgName("value")
-				.create('q'));
-		
 		return options;
 	}
 	
