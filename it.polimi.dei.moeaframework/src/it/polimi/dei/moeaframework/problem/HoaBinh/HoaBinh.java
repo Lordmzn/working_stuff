@@ -26,6 +26,7 @@ public class HoaBinh extends ExternalProblem {
   private static final String POLICY_TYPE = "ann";
   private static final String NUMBER_OF_NEURONS = "4";
   private static final String NUMBER_OF_INPUTS = "3";
+  private static final String NUMBER_OF_OBJECTIVES = "3";
   protected static final String NAME = "HoaBinh";
   
   
@@ -38,7 +39,7 @@ public class HoaBinh extends ExternalProblem {
 
   @SuppressWarnings("unchecked")
   public HoaBinh() throws IOException, FileNotFoundException {
-    super(EXECUTABLE, CALIBRATION_DATASET, INITIAL_STORAGE, POLICY_TYPE, NUMBER_OF_NEURONS, NUMBER_OF_INPUTS);
+    super(EXECUTABLE, CALIBRATION_DATASET, INITIAL_STORAGE, POLICY_TYPE, NUMBER_OF_NEURONS, NUMBER_OF_INPUTS, NUMBER_OF_OBJECTIVES);
     // loading the same paramfile used by the model
     InputStream paramfile = new FileInputStream(new File(SETTINGS_FILENAME));
     Yaml yaml = new Yaml();
